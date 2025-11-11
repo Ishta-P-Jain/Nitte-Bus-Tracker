@@ -1,0 +1,60 @@
+{
+  "buses": [
+    {
+      "id": 1,
+      "name": "Bus 1",
+      "from": "Mangalore",
+      "to": "Nitte",
+      "time": "1 hr 30 min",
+      "depart": "7:00 AM",
+      "arrive": "8:30 AM",
+      "stops": [
+        { "no": 1, "name": "Mangalore Bus Stand", "arrival": "7:00", "departure": "7:05" },
+        { "no": 2, "name": "Surathkal", "arrival": "7:30", "departure": "7:32" },
+        { "no": 3, "name": "Nitte Campus", "arrival": "8:30", "departure": "8:30" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Bus 2",
+      "from": "Udupi",
+      "to": "Nitte",
+      "time": "1 hr 30 min",
+      "depart": "6:45 AM",
+      "arrive": "8:15 AM",
+      "stops": [
+        { "no": 1, "name": "Udupi Bus Stand", "arrival": "6:45", "departure": "6:50" },
+        { "no": 2, "name": "Kundapura", "arrival": "7:30", "departure": "7:32" },
+        { "no": 3, "name": "Nitte Campus", "arrival": "8:15", "departure": "8:15" }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Bus 3",
+      "from": "Moodbidri",
+      "to": "Nitte",
+      "time": "1 hr 30 min",
+      "depart": "7:15 AM",
+      "arrive": "8:45 AM",
+      "stops": [
+        { "no": 1, "name": "Moodbidri", "arrival": "7:15", "departure": "7:20" },
+        { "no": 2, "name": "Karkala", "arrival": "7:50", "departure": "7:52" },
+        { "no": 3, "name": "Nitte Campus", "arrival": "8:45", "departure": "8:45" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Bus 4",
+      "from": "Belthangadi",
+      "to": "Nitte",
+      "time": "1 hr 30 min",
+      "depart": "6:30 AM",
+      "arrive": "8:00 AM",
+      "stops": [
+        { "no": 1, "name": "Belthangadi Bus Stand", "arrival": "6:30", "departure": "6:35" },
+        { "no": 2, "name": "Sullia", "arrival": "7:10", "departure": "7:12" },
+        { "no": 3, "name": "Nitte Campus", "arrival": "8:00", "departure": "8:00" }
+      ]
+    }
+  ]
+}

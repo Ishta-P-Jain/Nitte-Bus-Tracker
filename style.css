@@ -1,0 +1,549 @@
+/* ---------------- Global Styles ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+#rvSearch{
+  margin-bottom: 30px;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+:root {
+  --bg-color: #f7f8fa;
+  --text-color: #14213d;
+  --card-color: #fff;
+  --accent-color: #fca311;
+  --topbar-height: 80px;
+}
+
+body.dark-mode {
+  --bg-color: #121212;
+  --text-color: #fff;
+  --card-color: #1e1e1e;
+  --accent-color: #fca311;
+}
+
+/* Ensure the fixed mode toggle button shows black icon/text in dark mode */
+body.dark-mode .mode-toggle {
+  color: #000; /* black text/icon */
+  background: #fff; /* keep background light so icon contrasts */
+}
+
+/* ---------------- Top Nav Bar ---------------- */
+.topbar {
+  height: 80px; /* increased height */
+  background: var(--accent-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.topbar h1 {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* Logo on the left inside the topbar */
+#topLogo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  margin-right: 2px;
+}
+
+/* Hamburger (three-line) button */
+.hamburger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 36px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: #000;
+  border-radius: 3px;
+}
+
+/* Hamburger open (transform into X) */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+  width: 100%;
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+.hamburger span {
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+.hamburger:focus { outline: none; }
+
+/* ---------------- Dropdown ---------------- */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: #fff;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: var(--card-color);
+  min-width: 140px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  padding: 10px;
+  display: block;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.dropdown-content a:hover {
+  background: var(--accent-color);
+  color: #000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ---------------- Sidebar ---------------- */
+/* Collapsed sidebar that expands on hover */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: var(--topbar-height);
+  height: calc(100vh - var(--topbar-height));
+  width: 0; /* hidden by default */
+  padding: 0;
+  background: var(--card-color);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.12);
+  overflow: hidden;
+  transition: width 240ms ease, padding 240ms ease;
+  z-index: 30;
+}
+
+/* When open, the sidebar slides in */
+.sidebar.open {
+  width: 260px;
+  padding: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 10px 8px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar ul li:hover {
+  background: var(--accent-color);
+  color: #000;
+}
+
+/* small utility to render sidebar items as buttons */
+.link-as-button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ensure the about modal sits above other modals */
+#aboutModal .modal-content { max-width: 720px; }
+
+/* cleaned empty body ruleset removed */
+
+/* ---------------- Main Content ---------------- */
+.main-content {
+  flex: 1;
+  padding: 24px;
+  margin: 20px;
+  margin-top: 35px;
+ 
+  
+  border-radius: 12px;
+  transition: box-shadow 240ms ease, transform 240ms ease;
+  /* subtle base shadow to lift the content */
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.modal{
+  background-color: grey;
+  color:white;
+}
+.main-content:hover {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.10);
+  transform: translateY(-3px);
+}
+
+/* Keep the mode toggle fixed at the top-right of the page */
+.mode-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--text-color);
+  border: none;
+  padding: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  font-size: 18px;
+}
+
+/* Adjust topbar layout so logo and title align while toggle stays outside */
+.topbar {
+  padding-right: 120px; /* leave space so fixed toggle doesn't overlap */
+}
+
+/* ---------------- Bus Card Grid ---------------- */
+.content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two cards per row on desktop */
+  gap: 20px;
+}
+
+/* ---------------- Route Viewer ---------------- */
+.route-viewer {
+  background: var(--card-color);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  margin-bottom: 20px;
+}
+
+#rvClear{
+  margin-bottom: 30px;
+}
+
+.rv-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  margin-bottom: 5px;
+  width: 400px;
+}
+
+input{
+  width: 700px;
+  height: 40px;
+}
+
+.rv-controls input[type="search"] {
+  flex: 1;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.rv-controls select, .rv-controls button {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+}
+
+.route-list {
+  display: grid;
+  gap: 12px;
+}
+
+/* Route viewer cards in the left pane */
+.route-card {
+  background: var(--card-color);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.route-card h4 { margin-bottom: 6px; }
+
+.stops { display: flex; gap: 8px; flex-wrap: wrap; }
+.stop { 
+  padding: 6px 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(0,0,0,0.02));
+  border-radius: 999px;
+  border: 1px solid #e6e6e6;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+}
+.stop:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+.stop.selected { background: var(--accent-color); color: #000; box-shadow: 0 10px 30px rgba(252,163,17,0.12); }
+.stop.nearest { outline: 3px dashed rgba(252,163,17,0.22); }
+
+/* Put route-list in a fixed left column when sidebar is collapsed */
+@media (min-width: 900px) {
+  #routeList {
+    position: fixed;
+    left: 280px; /* leave space for sidebar when open */
+    top: 170px;
+    width: 320px;
+    max-height: calc(100vh - 200px);
+    overflow: auto;
+    z-index: 32;
+  }
+}
+
+/* RV Controls placed beside sidebar */
+.rv-controls#rvControls {
+  position: fixed;
+  left: 280px; /* sidebar width + gap */
+  top: 110px; /* just below topbar */
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  z-index: 35;
+}
+
+.rv-controls#rvControls input[type="search"] {
+  min-width: 820px;
+}
+
+.route-card {
+  padding: 12px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(252,163,17,0.06), rgba(0,0,0,0.02));
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.route-card h4 { margin-bottom: 6px; }
+
+.stops { display: flex; gap: 8px; flex-wrap: wrap; }
+.stop {
+  padding: 6px 8px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+.stop:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.stop.selected { background: var(--accent-color); color: #000; box-shadow: 0 8px 24px rgba(252,163,17,0.12); }
+
+.timetable-view { margin-top: 12px; background: var(--card-color); padding: 12px; border-radius: 8px; }
+.timetable-view table { width: 100%; border-collapse: collapse; }
+.timetable-view th, .timetable-view td { border: 1px solid #ddd; padding: 8px; }
+
+/* Responsive: switch to one column on narrow viewports */
+@media (max-width: 720px) {
+  .content {
+    grid-template-columns: 1fr;
+  }
+  .topbar {
+    padding-right: 96px; /* reduce space for toggle on smaller screens */
+  }
+}
+
+.bus-card {
+  background: var(--card-color);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  padding: 15px;
+  transition: transform 0.2s, background 0.3s;
+}
+
+#hamburger{
+  margin-top: 20px;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+.bus-card:hover {
+  transform: translateY(-5px);
+}
+
+.bus-card h3 {
+  margin-bottom: 10px;
+}
+
+.bus-card p {
+  margin-bottom: 6px;
+}
+
+.bus-card button {
+  margin-top: 8px;
+  width: 100%;
+  background: var(--text-color);
+  color: #fff;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.bus-card button:hover {
+  background: var(--accent-color);
+  color: #000;
+}
+
+/* ---------------- Modal ---------------- */
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  z-index: 10;
+}
+
+.modal.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--card-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 700px;
+  color: var(--text-color);
+}
+
+.modal-content h2 {
+  margin-bottom: 5px;
+}
+
+.modal-section {
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.map-view {
+  background: #e0e0e0;
+  height: 150px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Virtual map SVG styles */
+.map-view svg {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+}
+.map-view iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 6px;
+}
+.route-line {
+  stroke: rgba(20,33,61,0.9);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+.stop-marker {
+  fill: #fff;
+  stroke: #14213d;
+  stroke-width: 2;
+}
+.stop-label {
+  font-size: 12px;
+  fill: #14213d;
+}
+.bus-marker {
+  fill: #fca311;
+  stroke: #00000022;
+  stroke-width: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.modal-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modal-content th, .modal-content td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.modal-content th {
+  background: var(--accent-color);
+  color: #000;
+}
+
+.close-btn {
+  background: var(--accent-color);
+  border: none;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 6px;
+  float: right;
+  cursor: pointer;
+}

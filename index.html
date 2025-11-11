@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NITTE Campus Bus Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <!-- Top Nav Bar -->
+  <div class="topbar">
+    <img id="topLogo" src="image.png" alt="NITTE logo">
+    
+    <h1>NITTE Campus Bus Tracker</h1>
+    <div class="controls">
+      <div class="dropdown">
+        <button class="dropbtn">Filter by Bus ▼</button>
+        <div class="dropdown-content" id="filterBus">
+          <a href="#" onclick="filterBus('Bus 1')">BUS 1</a>
+          <a href="#" onclick="filterBus('Bus 2')">BUS 2</a>
+          <a href="#" onclick="filterBus('Bus 3')">BUS 3</a>
+          <a href="#" onclick="filterBus('Bus 4')">BUS 4</a>
+        </div>
+      </div>
+      <button id="modeToggle" class="mode-toggle" onclick="toggleMode()" aria-label="Toggle color mode">🌙</button>
+    </div>
+  </div>
+  
+<button id="hamburger" class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  <!-- Sidebar under Nav -->
+  <div class="sidebar" id="sidebar">
+    <ul>
+      <li>Home</li>
+
+      <li><button class="link-as-button" onclick="openTimetableView()">Timetable View</button></li>
+      <li><button id="aboutBtn" onclick="openAbout()" class="link-as-button">About</button></li>
+    </ul>
+  </div>
+
+  <!-- Route viewer controls (kept only) placed beside sidebar -->
+  <div class="rv-controls" id="rvControls">
+    <input type="search" id="rvSearch" placeholder="Search stop name..." aria-label="Search stops">
+    <button id="rvClear">Clear</button>
+  </div>
+
+  <!-- About Modal -->
+  <div class="modal" id="aboutModal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+      <button class="close-btn" onclick="closeAbout()">Close</button>
+      <h2 id="aboutTitle">Nitte Bus Tracker</h2>
+      <p><strong>Smart, real-time bus tracking system for campus transport.</strong></p>
+
+      <h3>🎯 Project Overview – Nitte Bus Tracker</h3>
+      <p>The Nitte Bus Tracker is a web-based application designed to help students and staff easily access information about campus bus routes and schedules. It provides a visual representation of each route, showing the path between the starting and destination points, along with detailed stop information and timetables.
+      Built with a clean and responsive interface, the system aims to make campus transportation more organized, accessible, and user-friendly, helping users quickly find the right bus and route information anytime.</p>
+
+
+      <h3>🧠 Technologies Used</h3>
+      <p>React.js<br>React Router<br>JSON Data<br>CSS3</p>
+
+      <h3> Our Team</h3>
+      <p>This project was built by an enthusiastic team of students from NMAMIT as part of the Front-End Web Development Mini Project.</p>
+      <ul>
+        <li>⚙️ Ishta P Jain</li>
+        <li>⚙️ Melisha Viola Dsouza</li>
+        <li>⚙️ Shreya G Amin</li>
+      </ul>
+
+      
+    </div>
+  </div>
+
+  <!-- Route viewer: lists routes and stops -->
+ 
+  <div id="timetableView" class="timetable-view" hidden>
+    <button id="closeTimetable">Close Timetable</button>
+    <div id="timetableContainer"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Inline About panel (populated when About is clicked) -->
+    <div id="aboutInline" class="about-inline" hidden></div>
+    <div class="content" id="busCards"></div>
+  </div>
+
+  <!-- Modal (Bus Details) -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <button class="close-btn" onclick="closeModal()">Close</button>
+      <h2 id="busTitle"></h2>
+      <p id="busInfo"></p>
+      <p id="busStats"></p>
+
+      <div class="modal-section">
+        <h3>🗺 MAP VIEW</h3>
+        <div class="map-view">(Route line + Stop markers + Live bus position)</div>
+      </div>
+
+      <div class="modal-section">
+        <h3> TIMETABLE TABLE</h3>
+        <table id="timetable">
+          <tr><th>Stop No</th><th>Stop Name</th><th>Arrival</th><th>Departure</th></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
